@@ -1,0 +1,13 @@
+{% extends 'page/home.html' %}
+{% block searchbar %}
+    <div>
+        <h1>Fill the  search keywords to  search your topic </h1>
+        <form method= "post" action = "{% url 'search' %}">
+            {%csrf_token %}
+            {{ search_form}}
+             <input type="submit">
+       </form>
+       </div>
+
+    {%endblock%}
+

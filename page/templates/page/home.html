@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'page/styles.css' %}">
+    <title>Wikipedia</title>
+</head>
+<body>
+    <h1>Welcome to Wikipedia</h1>
+    <ul class="nav">
+        <li class="nav_items"><a href="{% url 'search' %}"> Search a topic</a></li>
+        <li class="nav_items"><a href="{% url 'homepage' %}">List of all the topics</a></li>
+        <li class="nav_items"><a href = "{% url 'random' %}"> View a random topic</a></li>
+        <li class="nav_items"> <a href = "{% url 'add' %}" >Add a new topic</a></li>
+       
+        
+    </ul>
+    {% block searchbar %}
+    {% endblock %}
+    {% block table_of_content %}
+    {% endblock %}
+    {% block topic %}
+    {% endblock %}
+    {% block add %}
+    {%endblock%}
+    {% block edit%}
+    {%endblock%}
+
+</body>
+</html>

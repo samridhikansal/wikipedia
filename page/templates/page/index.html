@@ -1,0 +1,35 @@
+
+{% extends 'page/home.html'%}
+{% load static%}
+
+        
+        {% block table_of_content %}
+
+        <h2> Here is the list of all the topics in Wikipedia.</h2>
+        <ul class="container">
+            {% for topic in topics %}
+            
+                <li  class= "row width_80">
+                    <div class="container">
+                        <h2> {{topic.heading}}</h2></p> 
+                        <div class="row">
+                            <button><a href="{% url 'topic' id=topic.id %}"> View this topic</a></button>
+                            <button><a href="{% url 'edit' id=topic.id %}">Edit this topic</a></button>
+                            <button><a href="{% url 'delete' id=topic.id %}">Delete this topic</a></button>
+                           
+                        </div>
+                        
+
+                    </div>
+                   
+                   
+                    
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="{% url 'home' %}">back</a>
+        
+        
+        {% endblock %}
+       
+  

@@ -1,0 +1,54 @@
+{% extends 'page/home.html' %}
+{% load static %}
+
+{% block topic %}
+
+<h1>Here are some details about your topic </h1>
+
+<div class="topic">
+   
+    <div><h1> {{topic.heading}}</h1></div>
+    <img src="{{topic.image.url}}" alt=" {{ topic.heading}}" />
+    <div><p> {{topic.desc}}</p></div>
+    <div> Contributed by - {{topic.author_name}}</div>
+    <p>Last Modified on - </p>
+</div>
+
+<div class="container">
+    <div class="row">
+        <p>Total Likes: {{likes_dislikes.like}}</p>
+        <form action="{% url 'like' id=topic.id %}" method="post" enctype="multipart/form-data">
+            {%csrf_token%}
+            <input type="submit" value = "Like">
+        </form>
+    </div>
+    <div class="row">
+        <p>Total dislikes: {{likes_dislikes.dislike}} </p>
+        <form action="{% url 'dislike' id=topic.id %}" method="post" enctype="multipart/form-data">
+            {%csrf_token%}
+            <input type="submit" value = "Unlike">
+        </form>
+    </div>
+    
+</div>
+
+    <form action="{% url 'topic' id=topic.id %}" method = "POST" enctype="multipart/form-data">
+        {%csrf_token%}
+        {{form}}
+        <button>Add Comments</button>
+    </form>
+    <div class="container">
+        {% for comment in comments%}
+            <li>{{comment.comments}}</li>
+        {%endfor%}
+    </div>
+</div>
+<div class="row">
+    <button> <a href="{% url 'home'%}"> Back </a></button>
+    <button> <a href="{% url 'edit' id=topic.id %}">Edit</a></button>
+</div>
+
+{%endblock%}
+
+
+

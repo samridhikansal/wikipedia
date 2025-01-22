@@ -1,0 +1,16 @@
+
+<div class="container">
+    <form method="post" action = "{% url 'delete' %}">
+        {%csrf_token%}
+        {{search_form}}
+        <input type="submit" name = "search_entry" value=" Search your topic to delete"/>
+    
+    </form>
+    
+    <div>
+        
+    </div>
+    <a href="{%url 'home' %}">back</a>
+</div>
+
+
