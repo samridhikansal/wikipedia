@@ -1,53 +1,59 @@
-{% extends 'page/home.html' %}
-{% load static %}
+{% extends 'page/index.html' %}
 
-{% block topic %}
 
-<h1>Here are some details about your topic </h1>
+{% block content %}
+<div class="d-flex flex-column ">
+    <h1 class=" text-secondary">Here are some details about your topic </h1>
 
-<div class="topic">
-   
-    <div><h1> {{topic.heading}}</h1></div>
-    <img src="{{topic.image.url}}" alt=" {{ topic.heading}}" />
-    <div><p> {{topic.desc}}</p></div>
-    <div> Contributed by - {{topic.author_name}}</div>
-    <p>Last Modified on - </p>
-</div>
-
-<div class="container">
-    <div class="row">
-        <p>Total Likes: {{likes_dislikes.like}}</p>
-        <form action="{% url 'like' id=topic.id %}" method="post" enctype="multipart/form-data">
-            {%csrf_token%}
-            <input type="submit" value = "Like">
-        </form>
-    </div>
-    <div class="row">
-        <p>Total dislikes: {{likes_dislikes.dislike}} </p>
-        <form action="{% url 'dislike' id=topic.id %}" method="post" enctype="multipart/form-data">
-            {%csrf_token%}
-            <input type="submit" value = "Unlike">
-        </form>
-    </div>
+    <div class="topic d-flex flex-column justify-content-center align-items-center">
     
-</div>
+        <h1 class="text-blaxck-60 px-2 text-center"> {{topic.heading}}</h1>
+        <img src="/media/{{topic.image}}" alt=" {{ topic.heading}}" class=" img-fluid rounded img-thumbnail" />
+        <p class="px-2"> {{topic.desc}}</p>
+        <div> Contributed by - {{topic.author_name}}</div>
+        <p>Last Modified on - </p>
+    </div>
 
-    <form action="{% url 'topic' id=topic.id %}" method = "POST" enctype="multipart/form-data">
-        {%csrf_token%}
-        {{form}}
-        <button>Add Comments</button>
-    </form>
-    <div class="container">
-        {% for comment in comments%}
-            <li>{{comment.comments}}</li>
-        {%endfor%}
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <div class="d-flex flex-row justify-content-end align-items-center">
+            <p>Total Likes: {{likes_dislikes.like}}</p>
+            <form action="{% url 'like' id=topic.id %}" method="post" enctype="multipart/form-data" class="form-group">
+                {%csrf_token%}
+                <input type="submit" value = "Like">
+            </form>
+        </div>
+        <div class="d-flex flex-row justify-content-center align-items-center">
+            <p>Total dislikes: {{likes_dislikes.dislike}} </p>
+            <form action="{% url 'dislike' id=topic.id %}" method="post" enctype="multipart/form-data">
+                {%csrf_token%}
+                <input type="submit" value = "Unlike">
+            </form>
+        </div>
+        
+    </div>
+    <div class="d-flex flex-column justify-content-start align-items-top w-50">
+        <h1 class="text-warning">Commments section </h1>
+        <form action="{% url 'topic' id=topic.id %}" method = "POST" enctype="multipart/form-data" class="form-group mx-5">
+                {%csrf_token%}
+                {{form}}
+                
+            <button class=" btn btn-primary">Add Comments</button>
+        </form>
+        <div class="container">
+            <h2>Previous Comments</h2>
+            {% for comment in comments%}
+                <li>{{comment.comments}}</li>
+            {%endfor%}
+        </div>
+    </div>
+        
+        
+  
+    <div class="row">
+        <button class=""> <a href="{% url 'home'%}"> Back </a></button>
+        <button> <a href="{% url 'edit' id=topic.id %}">Edit</a></button>
     </div>
 </div>
-<div class="row">
-    <button> <a href="{% url 'home'%}"> Back </a></button>
-    <button> <a href="{% url 'edit' id=topic.id %}">Edit</a></button>
-</div>
-
 {%endblock%}
 
 

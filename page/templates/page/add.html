@@ -1,6 +1,6 @@
-{% extends 'page/home.html'%}
+{% extends 'page/index.html'%}
 
-{% block add %}
+{% block content %}
 <div>
     <form method="post" action="{% url 'add' %}" enctype="multipart/form-data">
        {% csrf_token %}

@@ -1,11 +1,14 @@
-{% extends 'page/home.html' %}
-{% block searchbar %}
-    <div>
-        <h1>Fill the  search keywords to  search your topic </h1>
-        <form method= "post" action = "{% url 'search' %}">
+{% extends 'page/index.html' %}
+{% block content %}
+    <div class="d-flex flex-column justify-content-center align-items-center">
+        <h1 class="text-secondary">Fill the  search keywords to  search your topic </h1>
+        <form method= "post" action = "{% url 'search' %}" class="form-group">
             {%csrf_token %}
             {{ search_form}}
-             <input type="submit">
+            <div class="text-center">
+                <input type="submit" class="btn btn-primary m-5" value="Search">
+            </div>
+          
        </form>
        </div>
 
